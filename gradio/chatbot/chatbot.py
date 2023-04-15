@@ -1,7 +1,10 @@
 # How to Create a Chatbot: https://gradio.app/creating-a-chatbot/
 import gradio as gr
 import random
-import time
+import openai
+import os
+
+# openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 with gr.Blocks() as demo:
     chatbot = gr.Chatbot()
@@ -12,9 +15,11 @@ with gr.Blocks() as demo:
         return "", history + [[user_message, None]]
 
     def bot(history):
-        bot_message = random.choice(["Yes", "No"])
+        user_message = history[-1][0]
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo", messages=[{"role": "user", "content": user_message}])
+        bot_message = completion.choices[0].message.content
         history[-1][1] = bot_message
-        # time.sleep(1)
         return history
 
     msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(
