@@ -1,0 +1,16 @@
+services:
+  chatgpt-prompt-eng:
+      restart: always
+      hostname: chatgpt-prompt-eng
+      container_name: chatgpt-prompt-eng
+      image: local-python-3.11-chatgpt-prompt-eng
+      build:
+        context: .
+        dockerfile: Dockerfile
+      environment:
+        TZ: "Asia/Shanghai"
+        OPENAI_API_KEY: $OPENAI_API_KEY
+      volumes:
+        - ./examples/:/app/
+      # ports:
+      # - "7860:7860"
