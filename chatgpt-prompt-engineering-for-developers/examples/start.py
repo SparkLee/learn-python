@@ -1,3 +1,6 @@
+#!/bin/python
+# -*- coding: utf-8 -*-
+
 import openai
 import os
 from dotenv import load_dotenv, find_dotenv
