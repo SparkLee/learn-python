@@ -36,10 +36,12 @@ In many cases, longer prompts provide more clarity \
 and context for the model, which can lead to \ 
 more detailed and relevant outputs.
 """
+
 prompt = f"""
 Summarize the text delimited by triple backticks \ 
 into a single sentence.
 ```{text}```
 """
+
 response = get_completion(prompt)
 print(response)
