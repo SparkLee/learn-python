@@ -1,5 +1,7 @@
 FROM python:3.11
 
+ENV TERM xterm
+
 RUN pip install --upgrade pip
 
 # https://pypi.org/project/openai/
